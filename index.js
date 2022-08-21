@@ -39,14 +39,17 @@ const projectIdAndSecret = `${projectId}:${projectSecret}`
 async function ipfsClient() {
     const ipfs = await create(
         {
-            host: "ipfs.infura.io",
+            //host: "192.168.90.70",
+            host: "localhost",
+            //host: "ipfs.infura.io",
             port: 5001,
+            // protocol: "https",
             protocol: "http",
-            headers: {
-                authorization: `Basic ${Buffer.from(projectIdAndSecret).toString(
-                  'base64'
-                )}`
-            }
+            // headers: {
+            //     authorization: `Basic ${Buffer.from(projectIdAndSecret).toString(
+            //       'base64'
+            //     )}`
+            // }
         }
     );
     return ipfs;
@@ -71,7 +74,7 @@ app.post('/upload', async (req, res) => {
         fileHash = await saveFile(fileName,filePath);
         console.log("FILEHASH---->",fileHash)
 
-        return res.send(`http://localhost:3000/getFileData/${ fileHash }`);
+        return res.send(`http://192.168.90.70:3000/getFileData/${ fileHash }`);
 
         fs.unlink(filePath,(err)=>{
             if(err) console.log(err)
@@ -140,6 +143,9 @@ async function getData(hash) {
 // getData("QmQbA7BrBNkh1bbSgtUYdUJYsHRfvRN6k5vocxHgjadUjr")
  //getData("QmUV26pA85fwJuVQiWVh1P3gr688DcqyFPT6XR3jhzz21J")
 
+ //Test in Server
+ //getData("QmXAmoigT7ShyDPKKf6tB3QdFEaa49LK4VPWnTbfH3PLHv")
+ 
 
 app.listen(3000, () => {
     console.log('Server running on port 3000');
