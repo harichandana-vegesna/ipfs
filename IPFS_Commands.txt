@@ -1,0 +1,224 @@
+https://docs.ipfs.io/install/command-line/#official-distributions
+
+
+sudo apt-get update
+
+sudo apt-get install golang-go -y
+
+go version
+
+wget https://dist.ipfs.io/go-ipfs/v0.12.2/go-ipfs_v0.12.2_linux-amd64.tar.gz
+
+tar -xvzf go-ipfs_v0.12.2_linux-amd64.tar.gz
+
+cd go-ipfs
+
+sudo bash install.sh
+	Moved ./ipfs to /usr/local/bin
+
+ipfs --version
+
+which ipfs
+	/usr/local/bin/ipfs
+
+IPFS_PATH=/root/u01/vupadhi/.ipfs1 ipfs init
+	generating ED25519 keypair...done
+	peer identity: 12D3KooWGsaGTbggkTdLjPY8Bh9gYTmts2tX4mKvyxahdV5m9B9J
+	initializing IPFS node at /root/u01/vupadhi/.ipfs1
+	to get started, enter:
+
+			ipfs cat /ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc/readme
+
+IPFS_PATH=/root/u01/vupadhi/.ipfs2 ipfs init
+	generating ED25519 keypair...done
+	peer identity: 12D3KooWE2cJM3EcJq73ZRrCFqPpXRPF5TRDw9XLFS2QPoBFMYpB
+	initializing IPFS node at /root/u01/vupadhi/.ipfs2
+	to get started, enter:
+
+			ipfs cat /ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc/readme
+
+ls .ipfs*
+
+go get -u github.com/Kubuxu/go-ipfs-swarm-key-gen/ipfs-swarm-key-gen
+
+cd ~/go/bin/
+
+./ipfs-swarm-key-gen > ~/u01/vupadhi/.ipfs1/swarm.key
+
+./ipfs-swarm-key-gen > ~/u01/vupadhi/.ipfs2/swarm.key
+
+IPFS_PATH=/root/u01/vupadhi/.ipfs1 ipfs bootstrap rm --all
+	removed /dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN
+	removed /dnsaddr/bootstrap.libp2p.io/p2p/QmQCU2EcMqAqQPR2i9bChDtGNJchTbq5TbXJJ16u19uLTa
+	removed /dnsaddr/bootstrap.libp2p.io/p2p/QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb
+	removed /dnsaddr/bootstrap.libp2p.io/p2p/QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt
+	removed /ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ
+	removed /ip4/104.131.131.82/udp/4001/quic/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ
+	
+IPFS_PATH=/root/u01/vupadhi/.ipfs2 ipfs bootstrap rm --all	
+
+IPFS_PATH=/root/u01/vupadhi/.ipfs1 ipfs bootstrap add /ip4/127.0.0.1/tcp/4001/ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc
+	added /ip4/127.0.0.1/tcp/4001/ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc
+
+IPFS_PATH=/root/u01/vupadhi/.ipfs2 ipfs bootstrap add /ip4/127.0.0.1/tcp/4002/ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc
+	
+export LIBP2P_FORCE_PNET=1 && IPFS_PATH=/root/u01/vupadhi/.ipfs1 ipfs daemon	
+
+export LIBP2P_FORCE_PNET=1 && IPFS_PATH=/root/u01/vupadhi/.ipfs2 ipfs daemon	
+
+sudo mkdir ipfs_doc
+
+cd ipfs_doc/
+
+echo "hello...RV" > test.pdf
+
+IPFS_PATH=/root/u01/vupadhi/.ipfs1 ipfs add test.pdf
+	added QmRKzCXSqn9muKXbbYayUSpjresreyashUjL39nmA7rxmh test.pdf
+
+IPFS_PATH=/root/u01/vupadhi/.ipfs2 ipfs cat test.pdf
+
+IPFS_PATH=/root/u01/vupadhi/.ipfs2 ipfs cat QmRKzCXSqn9muKXbbYayUSpjresreyashUjL39nmA7rxmh
+
+QmT78zSuBmuS4z925WZfrqQ1qHaJ56DQaTfyMUF7F8ff5o
+
+IPFS_PATH=/home/vupadhi/.ipfs1 ipfs add test.pdf
+	added QmRKzCXSqn9muKXbbYayUSpjresreyashUjL39nmA7rxmh test.pdf
+
+IPFS_PATH=/home/vupadhi/.ipfs2 ipfs cat test.pdf
+
+IPFS_PATH=/home/vupadhi/.ipfs2 ipfs cat QmRKzCXSqn9muKXbbYayUSpjresreyashUjL39nmA7rxmh
+===================================================================================================
+
+IPFS_PATH=/home/hari/ipfs/.ipfs1 ipfs init
+
+	generating ED25519 keypair...done
+	peer identity: 12D3KooWBkHnNH2RQNdqtLhXGhAjEUEX56fjNKcEcrYv4BerZBc1
+	initializing IPFS node at /home/hari/ipfs/.ipfs1
+	to get started, enter:
+
+			ipfs cat /ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc/readme
+
+
+IPFS_PATH=/home/hari/ipfs/.ipfs2 ipfs init
+	generating ED25519 keypair...done
+	peer identity: 12D3KooWMwcXBFYenSXn38PtTjKGVtrtMHgjkYYf54qPK3kpuJTF
+	initializing IPFS node at /home/hari/ipfs/.ipfs2
+	to get started, enter:
+
+			ipfs cat /ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc/readme
+
+
+sudo ./ipfs-swarm-key-gen > ~/ipfs/.ipfs1/swarm.key
+
+sudo ./ipfs-swarm-key-gen > ~/ipfs/.ipfs2/swarm.key
+
+
+IPFS_PATH=/home/hari/ipfs/.ipfs1 ipfs bootstrap rm --all
+
+IPFS_PATH=/home/hari/ipfs/.ipfs2 ipfs bootstrap rm --all	
+
+IPFS_PATH=/home/hari/ipfs/.ipfs1 ipfs bootstrap add /ip4/127.0.0.1/tcp/4001/ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc
+
+IPFS_PATH=/home/hari/ipfs/.ipfs2 ipfs bootstrap add /ip4/127.0.0.1/tcp/4001/ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc
+
+
+export LIBP2P_FORCE_PNET=1 && IPFS_PATH=/home/hari/ipfs/.ipfs1 ipfs daemon
+
+export LIBP2P_FORCE_PNET=1 && IPFS_PATH=/home/hari/ipfs/.ipfs2 ipfs daemon
+
+IPFS_PATH=/home/hari/ipfs/.ipfs1 ipfs add test.pdf
+	added QmRKzCXSqn9muKXbbYayUSpjresreyashUjL39nmA7rxmh test.pdf
+
+IPFS_PATH=/home/hari/ipfs/.ipfs1 ipfs cat QmRKzCXSqn9muKXbbYayUSpjresreyashUjL39nmA7rxmh
+
+IPFS_PATH=/home/hari/ipfs/.ipfs2 ipfs add test.pdf                                                                                     
+	added QmRKzCXSqn9muKXbbYayUSpjresreyashUjL39nmA7rxmh test.pdf  
+	
+IPFS_PATH=/home/hari/ipfs/.ipfs2 ipfs cat QmRKzCXSqn9muKXbbYayUSpjresreyashUjL39nmA7rxmh
+
+=============================================== IPFS Working ======================================
+
+
+https://docs.ipfs.io/install/command-line/#official-distributions
+
+
+sudo apt-get update
+
+sudo apt-get install golang-go -y
+
+go version
+
+wget https://dist.ipfs.io/go-ipfs/v0.12.2/go-ipfs_v0.12.2_linux-amd64.tar.gz
+
+tar -xvzf go-ipfs_v0.12.2_linux-amd64.tar.gz
+
+cd go-ipfs
+
+sudo bash install.sh
+	Moved ./ipfs to /usr/local/bin
+
+ipfs --version
+
+which ipfs
+	/usr/local/bin/ipfs
+
+ipfs daemon ----> IPFS will start
+
+
+Run the Node Application to upload the file and test ----> npm start
+
+To run the IPFS as a service
+	https://www.maxlaumeister.com/u/run-ipfs-on-boot-ubuntu-debian/
+
+	nano /etc/systemd/system/ipfs.service
+
+		[Unit]
+		Description=IPFS daemon
+		After=network.target
+
+		[Service]
+		### Uncomment the following line for custom ipfs datastore location
+		# Environment=IPFS_PATH=/path/to/your/ipfs/datastore
+		ExecStart=/usr/local/bin/ipfs daemon
+		Restart=on-failure
+
+		[Install]
+		WantedBy=default.target		
+
+	sudo systemctl start ipfs
+
+	sudo systemctl status ipfs
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+============================================
+
+
+
+
+ERRORS
+
+Error 1:
+let error = new HTTP.HTTPError(response) ^ HTTPError: project id required
+
+	https://stackoverflow.com/questions/73314996/data-not-uploading-to-ipfs-error-uploading-file-httperror-project-id-require
+
+Error 2:
+Server running on port 4200
+(node:89676) UnhandledPromiseRejectionWarning: FetchError: request to http://localhost:5001/api/v0/add?stream-channels=true&progress=false failed, reason: connect ECONNREFUSED 127.0.0.1:5001
+
+	4200 Port is not opened
+
